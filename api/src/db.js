@@ -45,7 +45,7 @@ const { Activity, Country} = sequelize.models;
 
 
 Activity.belongsToMany(Country, { through: "country_activity" });
-Country.hasMany(Activity);
+Country.belongsToMany(Activity, { through: "country_activity"});
 
 
 

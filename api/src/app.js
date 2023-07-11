@@ -7,7 +7,7 @@ const Country = require('./models/Country.js');
 const { fillDataBase } = require('./controllers/CountryController.js');
 
 
-// require('./db.js');
+require('./db.js');
 
 const server = express();
 
