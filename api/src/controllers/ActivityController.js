@@ -15,8 +15,8 @@ const postActivities = async (req, res) => {
     const countriesIds = activityData.countries;
 
     const newActivity = await Activity.create(activityData);
-    const bla = await newActivity.setCountries(countriesIds)
-     
+    const bla = await newActivity.setCountries(countriesIds);
+
     res.status(201).json(newActivity);
   } catch (error) {
     res.status(500).json({ message: error.message });

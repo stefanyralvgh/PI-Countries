@@ -3,7 +3,6 @@ const { Op } = require("sequelize");
 const { Country, Activity } = require("../db.js");
 
 
-
 const fillDataBase = async () => {
   try {
     const response = await axios.get("https://restcountries.com/v3/all");
@@ -60,22 +59,17 @@ const getCountryById = (req, res) => {
 
 const getCountryByName = async (req, res) => {
   const { name } = req.query;
-  console.log(req.query);
-  console.log(name);
   try {
     const country = await Country.findOne({
       where: { name: { [Op.iLike]: `%${name}%` } },
+      include: [Activity]
     });
-console.log(country);
-    country
-    ? res.send(country)
-    : res.status(404).send("No countries found");
-    }
-  catch (error) {
+    
+    country ? res.send(country) : res.status(404).send("No countries found");
+  } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 module.exports = {
   getAllCountries,
